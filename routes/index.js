@@ -5,7 +5,5 @@ var router = express.Router();
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
-router.post("/getnorad", (req, res) => {});
-router.post("/storemodel", (req, res) => {});
-router.post("/createreport", (req, res) => {});
+
 module.exports = router;
