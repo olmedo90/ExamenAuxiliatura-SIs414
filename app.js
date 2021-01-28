@@ -1,19 +1,18 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-
-var indexRouter = require("./routes/index");
-var mustacheExpress = require("mustache-express");
-
+import createError from "http-errors";
+import express from "express";
+import path from "path";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
+import mustacheExpress from "mustache-express";
+import indexRouter from "./routes/routes.js";
+const __dirname = "./";
 var app = express();
 
 // view engine setup
 
 app.engine("html", mustacheExpress());
 app.set("view engine", "html");
-app.set("views", __dirname + "/views");
+app.set("views", __dirname + "views");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -42,4 +41,4 @@ var port = 8000;
 app.listen(port, () => {
   console.log("server running in " + port);
 });
-module.exports = app;
+export default app;
