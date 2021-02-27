@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
-mongoose.connect("mongodb://172.31.0.2:27017/restorant", {
-  useNewUrlParser: true,
-});
+import dotenv from "dotenv";
+dotenv.config();
+mongoose.connect(
+  `mongodb://${process.env.IPHOSTDB}:${process.env.PORTDB}/${process.env.NAMEDB}`,
+  {
+    useNewUrlParser: true,
+  }
+);
 var db = mongoose.connection;
 db.on("error", () => {
   console.log("No se puede conectar con la base de datos");

@@ -8,6 +8,14 @@ class UserModel {
     this.UserSchema = new this.Schema({
       name: String,
       lastname: String,
+      fotosPerfil: [
+        {
+          uriAvatar: String, //la ruta de la imagen para http
+          directorypath: String, //la ruta de donde se almacena la imagen en la servidor
+          name: String,
+          default: Boolean,
+        },
+      ],
       email: {
         type: String,
         validate: {
@@ -64,9 +72,13 @@ class UserModel {
   /* 
   R. read
   */
-  getUsers() {
+  getUsers(filterdata) {
+    var filter = {};
+    if (filterdata != null) {
+      filter = filterdata;
+    }
     return new Promise((resolve, reject) => {
-      this.mymodel.find({}, (err, docs) => {
+      this.mymodel.find(filter, (err, docs) => {
         if (err) {
           console.log(err);
           resolve(err);
@@ -114,6 +126,7 @@ class UserModel {
   }
   async checkEmaildb(email) {
     var result = await this.mymodel.find({ email: email });
+
     if (result.length > 0) {
       return true;
     }
@@ -125,6 +138,27 @@ class UserModel {
       { $push: { roles: rol } }
     );
     return result;
+  }
+  async updateAvatar(id, obj) {
+    var result = await this.mymodel.update(
+      { _id: id },
+      { $push: { fotosPerfil: obj } }
+    );
+    return result;
+  }
+  async findAvatar(name) {
+    var avatarImages = await this.mymodel.find({ "fotosPerfil.name": name });
+    if (avatarImages != null && avatarImages.length > 0) {
+      var avatarimage = avatarImages[0];
+      var resuldata = avatarimage.fotosPerfil.filter((item) => {
+        if (item.name == name) {
+          return true;
+        }
+        return false;
+      });
+      return resuldata;
+    }
+    return [];
   }
 }
 export default UserModel;

@@ -5,15 +5,22 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import mustacheExpress from "mustache-express";
 import indexRouter from "./routes/routes.js";
+import fileUpload from "express-fileupload";
+import dotenv from "dotenv";
+
 const __dirname = "./";
 var app = express();
-
+dotenv.config();
 // view engine setup
 
 app.engine("html", mustacheExpress());
 app.set("view engine", "html");
 app.set("views", __dirname + "views");
-
+app.use(
+  fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+  })
+);
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
