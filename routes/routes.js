@@ -4,10 +4,12 @@ import UserController from "../controller/userController.js";
 import RolesController from "../controller/rolesContoller.js";
 import JsonWebTokenManagement from "../middleware/JsonWebTokenManagement.js";
 
+
 var router = express.Router();
 var indexControler = new IndexController();
 var userController = new UserController();
 var rolesController = new RolesController();
+
 var jsonwebtokenmanagement = new JsonWebTokenManagement();
 /* GET home page. */
 /**

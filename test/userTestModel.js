@@ -1,7 +1,8 @@
 import UserModel from "../models/userModel.js";
+
 var inittest = async () => {
   var usermodel = new UserModel();
-  /*usermodel.createUser(
+ usermodel.createUser(
     "Test1",
     "Test 1 lastname",
     "test@gmail.com",
@@ -33,8 +34,9 @@ var inittest = async () => {
     new Date(),
     16
   );
-  console.log(await usermodel.getUsers());*/
-  //usermodel.deleteUser("60146018e49f7308a951795c");
+    console.log(await usermodel.getUsers());
+  
+    //usermodel.deleteUser("60146018e49f7308a951795c");
 
   //await usermodel.updateModel("60146018e49f7308a951795d", { name: "Ramon" });
   //console.log(await usermodel.getUsers());
