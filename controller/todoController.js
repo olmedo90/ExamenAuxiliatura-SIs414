@@ -24,3 +24,19 @@ class todoController{
       response.status(200).json(result);
     }
 }*/
+import todo from "../models/ToDoModels.js";
+class TodoController {
+    constructor() {}
+        async createtodo(request, response){
+            var data = request.body;
+            var Todo =  new todo();
+            var result = await Todo.createtodo(
+                data.name, 
+                data.description, 
+                new Date(), 
+                data.hour, 
+                data.done);
+            response.status(200).json(result);
+        }
+}
+export default TodoController;

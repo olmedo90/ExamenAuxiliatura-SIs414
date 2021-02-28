@@ -3,12 +3,13 @@ import IndexController from "../controller/indexController.js";
 import UserController from "../controller/userController.js";
 import RolesController from "../controller/rolesContoller.js";
 import JsonWebTokenManagement from "../middleware/JsonWebTokenManagement.js";
-
+import TodoController from "../controller/todoController.js";
 
 var router = express.Router();
 var indexControler = new IndexController();
 var userController = new UserController();
 var rolesController = new RolesController();
+var todoController = new TodoController();
 
 var jsonwebtokenmanagement = new JsonWebTokenManagement();
 /* GET home page. */
@@ -42,5 +43,8 @@ router.delete("/roles/:id", rolesController.deleteRol);
 /* 
 Implemente 
 */
+router.post("/todo", todoController.createtodo);
+router.get("/todo", todoController.createtodo);
+router.get("/showavatar/:name", userController.getAvatar);
 
 export default router;

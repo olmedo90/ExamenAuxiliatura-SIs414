@@ -1,7 +1,7 @@
 import mongoose from "../connection/connect.js";
 import modelenum from "../utils/enumModel.js";
 class todo{
-    Constructor(){
+    constructor(){
         this.Schema = mongoose.Schema;
         this.todoSchema = new this.Schema({
             name: String,
@@ -20,7 +20,7 @@ class todo{
            
           }
     }
-    gettodo() {
+    getTodo() {
         return this.mymodel;
     }
     async gettodo(){
