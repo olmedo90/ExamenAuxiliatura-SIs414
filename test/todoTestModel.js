@@ -6,6 +6,6 @@ let inittest = async () => {
     todmodel.createtodo("test2", "descripcion", new Date(), "hora" );
     todmodel.createtodo("test3", "descripcion", new Date(), "hora" );
 
-    console.log(await todmodel.getModel());
+    console.log(await todmodel.save());
   };
   inittest();

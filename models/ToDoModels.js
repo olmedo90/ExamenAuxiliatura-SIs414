@@ -1,7 +1,5 @@
 import mongoose from "../connection/connect.js";
 import modelenum from "../utils/enumModel.js";
-import RolesModel from "./rolesModel.js";
-
 class todo{
     Constructor(){
         this.Schema = mongoose.Schema;
@@ -15,14 +13,18 @@ class todo{
         //this.mymodel = mongoose.model('todo', this.todoSchema);
        // console.log(this.mymodel+"****");
         if (modelenum["todo"] == null) {
-            this.mymodel = mongoose.model("todo", this.UserSchema);
+            this.mymodel = mongoose.model("todo", this.todoSchema);
             modelenum["todo"] = this.mymodel;
           } else {
             this.mymodel = modelenum["todo"];
+           
           }
     }
-    getTodo() {
+    gettodo() {
         return this.mymodel;
+    }
+    async gettodo(){
+        return await this.mymodel.find({});
     }
     createtodo(name, description, date, hour,done){
         let todo = {
@@ -40,9 +42,7 @@ class todo{
             });
         })
     }
-    async gettodo(){
-        return await this.mymodel.find({});
-    }
+    /*
     updatetodo(id, todoobject){
         return new Promise((resolve, reject)=>{
              this.mymodel.update({_id: id}, {$set: todoobject},(err, docs) => {
@@ -65,6 +65,6 @@ class todo{
             resolve(docs);
         }); 
     }
-
+    */
 }
 export default todo;
