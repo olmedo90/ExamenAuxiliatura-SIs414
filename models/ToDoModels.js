@@ -15,13 +15,11 @@ class todo{
         if (modelenum["todo"] == null) {
             this.mymodel = mongoose.model("todo", this.todoSchema);
             modelenum["todo"] = this.mymodel;
-          } else {
-            this.mymodel = modelenum["todo"];
-           
-          }
+        } else {
+            this.mymodel = modelenum["todo"]; 
+        }
     }
     
-  
     createtodo(name, description, date, hour,done){
         let todo = {
             name,
@@ -63,7 +61,6 @@ class todo{
         });
         }); 
     }
-
     deletetodo(id){
         return new Promise((resolve, rejest) => {
             this.mymodel.remove({_id: id}).then((err, docs)=> {
@@ -76,6 +73,15 @@ class todo{
             }); 
         })
         }
+        async hechoTodo(id) {
+            let don='true';
+            const result = await this.mymodel.update(
+            { _id: id },
+            { $set: { done: don } }
+            );
+            return result;
+        }
+        
     getModel(){
         return this.mymodel;
     }

@@ -15,7 +15,7 @@ class TodoController {
             response.status(200).json(result);
         }
         async gettodo(request, response){
-            let result = await Todo.gettodo();
+            var result = await Todo.gettodo();
             response.status(200).json(result);
         }
         async updatetodo(request, response){
@@ -29,6 +29,11 @@ class TodoController {
           var id = request.params.id;
           var result = await Todo.deletetodo(id)
           response.status(200).json(result);
+      }
+      async hechoTodo(request, res) {
+        var id = request.params.id;
+        var result = await Todo.hechoTodo(id);
+        res.status(200).json(result );
       }
 }
 export default TodoController;
