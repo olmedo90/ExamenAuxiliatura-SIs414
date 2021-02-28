@@ -20,12 +20,8 @@ class todo{
            
           }
     }
-    getTodo() {
-        return this.mymodel;
-    }
-    async gettodo(){
-        return await this.mymodel.find({});
-    }
+    
+  
     createtodo(name, description, date, hour,done){
         let todo = {
             name,
@@ -42,10 +38,22 @@ class todo{
             });
         })
     }
-    /*
+    gettodo() {
+        return new Promise((resolve, reject) => {
+            this.mymodel.find({}, (err, docs) => {
+                if(err){
+                    console.log(err);
+                    resolve(err);
+                    return;
+                }
+                resolve(docs);
+            });
+        });
+        
+    }
     updatetodo(id, todoobject){
         return new Promise((resolve, reject)=>{
-             this.mymodel.update({_id: id}, {$set: todoobject},(err, docs) => {
+            this.mymodel.update({_id: id}, {$set: todoobject}, (err, docs) => {
             if(err){
                 console.log(err);
                 resolve(err);
@@ -55,16 +63,21 @@ class todo{
         });
         }); 
     }
+
     deletetodo(id){
-        this.mymodel.remove({_id: id}).then((err, docs)=> {
-            if(err){
-                console.log(err);
-                resolve(err);
-                return;
-            }
-            resolve(docs);
-        }); 
+        return new Promise((resolve, rejest) => {
+            this.mymodel.remove({_id: id}).then((err, docs)=> {
+                if(err){
+                    console.log(err);
+                    resolve(err);
+                    return;
+                }
+                resolve(docs);
+            }); 
+        })
+        }
+    getModel(){
+        return this.mymodel;
     }
-    */
 }
 export default todo;

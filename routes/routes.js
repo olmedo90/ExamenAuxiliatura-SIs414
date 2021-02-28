@@ -44,7 +44,9 @@ router.delete("/roles/:id", rolesController.deleteRol);
 Implemente 
 */
 router.post("/todo", todoController.createtodo);
-router.get("/todo", todoController.createtodo);
-router.get("/showavatar/:name", userController.getAvatar);
-
+//outer.get("/todo", todoController.createtodo);
+//router.get("/showavatar/:name", userController.getAvatar);
+router.get("/todo", todoController.gettodo);
+router.put("/todo/:id", todoController.updatetodo);
+router.delete("/todo/:id", todoController.deletetodo);
 export default router;
